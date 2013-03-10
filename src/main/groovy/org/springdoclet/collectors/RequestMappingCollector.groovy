@@ -80,6 +80,7 @@ class RequestMappingCollector implements Collector {
   }
 
   void writeOutput(MarkupBuilder builder, PathBuilder paths) {
+
     builder.div(id:'request-mappings') {
       h2 'Request Mappings'
       table {
@@ -93,7 +94,7 @@ class RequestMappingCollector implements Collector {
         for (mapping in sortedMappings) {
           tr {
             td mapping.httpMethodName
-            td mapping.path
+            td mapping.path.toString().replaceAll('"', '')
             td {
               a(href: paths.buildFilePath(mapping.className), mapping.className)
             }
